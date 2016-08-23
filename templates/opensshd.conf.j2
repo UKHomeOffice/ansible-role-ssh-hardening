@@ -133,7 +133,7 @@ HostbasedAuthentication no
 UsePAM {{ 'yes' if ssh_use_pam else 'no' }}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
-PasswordAuthentication no
+PasswordAuthentication {{ 'yes' if ssh_server_password_login else 'no' }}
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 
@@ -201,7 +201,7 @@ PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 
 #Banner /etc/ssh/banner.txt
-#UseDNS yes
+UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
 #PidFile /var/run/sshd.pid
 #MaxStartups 10
 

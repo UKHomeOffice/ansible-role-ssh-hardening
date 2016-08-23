@@ -51,6 +51,9 @@ ssh_allow_agent_forwarding: false       # sshd
 # false to disable pam authentication.
 ssh_use_pam: false      # sshd
 
+# Disable password-based authentication, it can allow for potentially easier brute-force attacks.
+PasswordAuthentication: false    # sshd
+
 # if specified, login is disallowed for user names that match one of the patterns.
 ssh_deny_users: ''      # sshd
 
@@ -65,6 +68,9 @@ ssh_allow_groups: ''      # sshd
 
 # false to disable printing of the MOTD
 ssh_print_motd: false      # sshd
+
+# true to use DNS
+ssh_use_dns: true         # sshd
 
 # false to disable display of last login information
 ssh_print_last_log: false    # sshd
