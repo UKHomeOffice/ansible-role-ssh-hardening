@@ -16,10 +16,14 @@
   failed_when: false
   changed_when: false
 
+- name: check for sshd
+  path: /usr/sbin/sshd
+  register: sshd_stat
+  
 - name: create sshd_config and set permissions to root/600
   template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner=root group=root validate="/usr/sbin/sshd -T -f %s"
   notify: restart sshd
-  when: ssh_server_hardening
+  when: ssh_server_hardening and sshd_stat.stat.exists
 
 - name: create ssh_config and set permissions to root/644
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
