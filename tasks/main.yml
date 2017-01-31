@@ -17,7 +17,8 @@
   changed_when: false
 
 - name: check for sshd
-  path: /usr/sbin/sshd
+  stat:
+    path: /usr/sbin/sshd
   register: sshd_stat
   
 - name: create sshd_config and set permissions to root/600
